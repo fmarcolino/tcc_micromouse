@@ -1,0 +1,30 @@
+% Mestre em LaTeX - v0.5 com adaptações do abntex2
+%Anderson Soares
+
+% Classe do documento
+\documentclass[oneside,a4paper,12pt,fleqn,english,french,spanish,brazil]{abntex2}
+% Pacotes e comandos customizados
+\include{meta}
+
+% Início do texto
+\begin{document}
+
+\frontmatter
+\pagenumbering{arabic}
+\include{pre}   % Capa, prefácio e afins
+
+\textual
+
+\mainmatter
+\pagenumbering{arabic}
+\include{cap_1}
+\include{cap_2}
+\include{cap_3}
+\include{cap_4}
+
+% Arquivo .bib
+\bibliography{referencias}
+
+% Fim do texto
+\end{document}
+

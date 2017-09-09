@@ -1,0 +1,36 @@
+%------------------------------------------------
+\chapter{\textbf{Considerações Finais}}\label{Conclusao}
+%---------------------------------------------------------
+
+\section{Conclusão}
+
+A robótica, e em particular, a robótica móvel, teve um salto de desenvolvimento muito grande nestas duas últimas décadas com aplicações em diferentes áreas. O desenvolvimento da inteligência artificial, ao longo do tempo, proporcionou a autonomia de vários processos, de forma a interagir com os sinais do ambiente. Atualmente eles estão sendo desenvolvidos para trabalhar na medicina, na agricultura, na indústria, para as residências, e até mesmo para diversas competições de robótica existentes em todo o mundo, em especial para competições Micromouse. Os robôs Micromouse analisam o meio e tomam decisões de forma inteligente para solucionar labirintos.
+
+A competição Micromouse ganhou o mundo a partir da década de 1970. As regras da competição foram fixadas pelo IEEE. O desafio consiste em resolver um labirinto de 16x16 células, disponibilizado somente na hora da competição. O robô deverá sair de um dos cantos e chegar ao centro no menor tempo possível. O ganhador é o Micromouse que possui o menor tempo de corrida. Os robôs geralmente possuem um microcontrolador, motores com \emph{encoders}, sensores de distância montados sobre PCI.
+
+Alguns algoritmos foram estudados. Os mais comuns, para resolver o labirinto, são os seguintes: Seguidor de paredes, \emph{Treumax} e \emph{Flood Fill}. O seguidor de parede não consegue resolver labirintos com paredes não conexas ao centro, e, desta forma, há muito tempo, eles deixaram de ser utilizados. Os algoritmos \emph{Treumax} e \emph{Flood Fill}, dois algoritmos surgidos a partir da \emph{Teoria dos Grafos}, foram desenvolvidos para resolver este problema. Segundo estudo, os dois algoritmos tem desempenhos satisfatórios, requerem bom processamento e memória, porém, a conclusão é que o algoritmo Flood Fill resolve qualquer labirinto sempre com o menor número de células atravessadas, visto que ele sempre tenta seguir um percurso otimista quando não há informações suficientes do labirinto. 
+
+Este trabalho desenvolveu e implementou, em robô Micromouse, um novo algoritmo, baseado no \emph{Flood Fill}, que utilize a menor quantidade possível de memória RAM, mantendo a eficiência do mesmo quando comparado aos algoritmos implementados na literatura. A estratégia otimiza o esquema de memória para armazenar, em somente uma estrutura de dados, os caminhos de ida e de volta em uma corrida típica do Micromouse. Além do projeto do algoritmo, um bom projeto de \emph{hardware} do robô e de controle de velocidades dos motores foram necessários, e o conjunto deve andar em sintonia perfeita durante as corridas num labirinto desconhecido.
+
+A eficiência do algoritmo proposto foi comparada à eficiência do algoritmo \emph{Flood Fill} do simulador \emph{Micro Mouse Maze Editor and Simulator} e demonstrou-se que os algoritmos apresentaram eficiência equivalentes, sendo que a estratégia de otimização de memória proposta deixa em vantagem o algoritmo proposto. A equivalência de eficiência entre os algoritmos pode ser vista a partir do caminho traçado por cada algoritmo em várias simulações propostas.
+
+No algoritmo proposto, no traçado do caminho de volta, como já foi visto, as distâncias são redefinidas, uma vez que o novo alvo é a célula inicial (coordenadas 0,0). Porém, as informações das paredes descobertas ainda permanecem na memória, bastando apenas realizar varreduras para atualizar as distâncias. Isto é feito enquanto o robô permanece parado na célula de destino. Assim, quando as atualizações se completam, o robô poderá deslocar-se para as células de menor distância. O processo se repete quando o robô chega à célula de distância zero. Haverá redução de uso de memória RAM e um custo computacional maior, porém isto acontece enquanto o robô permanece parado e fora do tempo de corrida, não prejudicando o desempenho do robô em uma eventual competição. Algumas estatísticas demonstraram desempenho superior do algoritmo proposto, em relação ao número de células atravessadas para encontrar o melhor caminho.
+
+Entretanto, para sistemas MIMO, uma extensão do método do relé, denominado \emph{método do relé sequencial}, conseguiu oscilar as malhas em seguência. A sintonia dos controladores também é baseada na tabela do Ziegler-Nichols. Portanto, este método, utilizado para sintonia dos controladores PID do sistema MIMO proposto, teve êxito, tanto na simulação como também na implementação do controle no robô. 
+
+As saídas do sistema MIMO seguem perfeitamente os \emph{perfis de velocidade}, que, quando gerados, dão ao robô as referências necessárias para a realização da trajetória. Quando isto ocorre, a probabilidade do robô seguir a trajetória projetada é grande. São mínimos os esforços do controle de correção do posicionamento do robô através do \emph{feedback} dos sensores de distância. As saídas se comportaram bem para as entradas em rampa, com erro em regime permanente quase que imperceptível, para velocidades baixas.
+
+Num sistema robótico real, os ruídos fazem parte do sistema. Eles podem gerar uma perturbação no sistema de controle, e, com isso, acúmulo de erros de posicionamento são inevitáveis, num sistema em \emph{malha aberta}. Uma realimentação baseada nos sensores de distância IR tornou imprescindível para o Micromouse se locomover com erros mínimos de posicionamento. Os sensores trabalharam corretamente a fornecer \emph{feedback} para correção dos erros de posicionamento do Micromouse, sendo que quando maior o erro, maior é a sua ação sobre a velocidade angular, responsável por ajustar o ângulo do robô e manter o mesmo no centro do labirinto.
+
+O sucesso da união de todas as partes construídas pôde ser visto durante os testes em labirinto real. O algoritmo \emph{Flood Fill} indicou corretamente o melhor caminho. As máquinas de estado responsáveis pelas gerações dos perfis de velocidade garantiram as referências das trajetórias de curvas e de retas.  Os obstáculos foram detectados e armazenados corretamente nas estruturas.
+
+
+\section{Trabalhos Futuros}
+Para trabalhos futuros, sugerem-se os itens a seguir:
+
+\begin{enumerate}[leftmargin=2cm,label=\alph*)]
+	\item utilizar redes neurais artificiais ou sistemas nebulosos para controlar os perfis de reta e de curva;
+	\item implementar o algoritmo \emph{Flood Fill diagonal};
+	\item implementar o algoritmo de controle robusto PID preditivo, adaptativo e inteligente;
+	\item replicar o micromouse para incentivar competições locais e estaduais da categoria.
+\end{enumerate}

@@ -1,0 +1,244 @@
+%%% Pacotes utilizados %%%
+
+% Codificação do arquivo
+\usepackage[utf8]{inputenc}
+% Indenta o primeiro parágrafo de cada seção.
+\usepackage{indentfirst}
+
+%pacote cancel
+\usepackage{cancel}
+
+% Mapear caracteres especiais no PDF
+\usepackage{cmap}
+
+
+% Codificação da fonte
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+
+
+%% Microtipografia
+% Utiliza recursos como espaçamento entre letras e entre linhas
+\usepackage{microtype}
+% Habilita protrusão e expansão, ignorando
+% compatibilidade (ver documentação do pacote)
+\microtypesetup{activate={true,nocompatibility}}
+% factor=1100 aumenta a protrusão (default 1000)
+% stretch=10 diminui o valor máximo de expansão (default 20)
+% shrink=10 diminui o valor máximo de encolhimento (default 20)
+\microtypesetup{factor=1100, stretch=10, shrink=10}
+% Tracking, espaçamento entre palavras, kerning
+\microtypesetup{tracking=true, spacing=true, kerning=true}
+% Remover tracking para Small Caps
+\SetTracking{encoding={T1}, shape=sc}{0}
+% Remove ligaduras para o 'f'. Se necessário, adicionar letras
+% separadas por vírgulas
+\DisableLigatures[f]{encoding={T1}}
+% Documento em versão "final", suporte para outros idiomas
+\microtypesetup{final, babel}
+
+% Essencial para colocar funções e outros símbolos matemáticos
+%\usepackage{amsmath,amssymb,amsfonts,textcomp}
+\usepackage[fleqn]{amsmath}
+\usepackage[fleqn]{mathtools}
+\usepackage{amssymb,amsfonts,textcomp}
+
+\usepackage{calligra}
+\usepackage{calrsfs}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[1.4]callig15}{}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\usepackage[mathscr]{euscript}
+\setlength{\mathindent}{0pt}
+\usepackage{eqnarray}
+
+%% Layout
+% Customização do layout da página, margens espelhadas
+%\usepackage[twoside]{geometry}
+% Aumenta as margens internas para espiral
+%\geometry{bindingoffset=10pt}
+% Só pra ajustar o layout
+%\setlength{\marginparwidth}{90pt}
+%\usepackage{layout}
+
+% Para definir espaçamento entre as linhas
+\usepackage{setspace}
+
+% Espaçamento do texto para o frame
+\setlength{\fboxsep}{1em}
+
+% Faz com que as margens tenham o mesmo tamanho horizontalmente
+%\geometry{hcentering}
+
+%% Elementos Gráficos
+% Para incluir figuras (pacote extendido)
+\usepackage[]{graphicx}
+
+%% Suporte a cores
+\usepackage{color}
+% Os argumentos declaram nomes novos, como Cyan e Crimson
+% (ver documentação do pacote).
+\usepackage[usenames,dvipsnames,svgnames]{xcolor}
+
+% Criar figura dividida em subfiguras
+\usepackage{subfig}
+\captionsetup[subfigure]{style=default, margin=0pt, parskip=0pt, hangindent=0pt, indention=0pt, singlelinecheck=true, labelformat=parens, labelsep=space}
+
+% Caso queira guardar as figuras em uma pasta separada
+% (descomente e) defina o caminho para o diretório:
+\graphicspath{{Imagens/}}
+\usepackage{tabu}
+\usepackage{bm}
+\usepackage[labelfont=bf]{caption}
+
+% Customizar as legendas de figuras e tabelas
+\usepackage{caption}
+
+%pacotes novos
+\usepackage{siunitx,booktabs} 
+
+
+% Criar ambientes com 2 ou mais colunas
+\usepackage{multicol}
+
+% Criar ambientes com 2 ou mais linhas
+\usepackage{multirow}
+
+%% Tabelas
+% Elementos extras para formatação de tabelas
+\usepackage{array}
+
+% Tabelas com qualidade de publicação
+\usepackage{booktabs}
+
+% Para criar tabelas maiores que uma página
+\usepackage{longtable}
+
+% adicionar tabelas e figuras como landscape
+\usepackage{lscape}
+
+%% Lista de Abreviações
+% Cria lista de abreviações
+\usepackage[notintoc,portuguese]{nomencl}
+\makenomenclature
+
+%% Notas de rodapé
+% Lidar com notas de rodapé em diversas situações
+\usepackage{footnote}
+
+% Notas criadas nas tabelas ficam no fim das tabelas
+\makesavenoteenv{tabular}
+
+% Conta o número de páginas
+\usepackage{lastpage}
+
+\usepackage{enumitem}
+% Cálculo do total de folhas
+\usepackage{refcount}
+\newcommand{\sumoffset}[2]{\number\numexpr\getpagerefnumber{#2}+\getpagerefnumber{#1}\relax}
+
+\usepackage{totcount}
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+%% Pontuação e unidades
+% Posicionar inteligentemente a vírgula como separador decimal
+\usepackage{icomma}
+
+% Formatar as unidades com as distâncias corretas
+\usepackage[tight]{units}
+
+
+% Dados do projeto
+\newcommand{\nomedoaluno}{Francisco Marcolino Rodrigues Filho}
+\tipotrabalho{Trabalho de Conclusão de Curso}
+\orientador{Otacílio da Mota Almeida}
+\instituicao{Universidade Federal do Piauí}
+
+%% Comandos customizados
+
+\newcommand{\mychapter}[2]{
+    \setcounter{chapter}{#1}
+    \setcounter{section}{0}
+    \chapter*{#2}
+    \addcontentsline{toc}{chapter}{#2}
+}
+
+% Espécie e abreviação
+\newcommand{\subde}{\emph{Clypeaster subdepressus}}
+\newcommand{\subsus}{\emph{C.~subdepressus}}
+
+\titulo{Estudo e implementação de algoritmo inteligente para resolução de labirinto com robô autônomo diferencial Micromouse}
+\autor{\nomedoaluno}
+\local{Brasil}
+\data{2017}
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+\makeatletter
+\renewcommand{\@chapapp}{}% Not necessary...
+\newenvironment{chapquote}[2][2em]
+  {\setlength{\@tempdima}{#1}%
+   \def\chapquote@author{#2}%
+   \parshape 1 \@tempdima \dimexpr\textwidth-2\@tempdima\relax%
+   \itshape}
+  {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
+
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        	% color of links to bibliography
+    	filecolor=black,      		% color of file links
+		urlcolor=black,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+%\usepackage{titlesec}
+%%\titleformat{\chapter}[display]{\normalfont\Large}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
+%\titleformat*{\section}{\large\bfseries}
+%\titleformat*{\subsection}{\normalsize}
+%\titleformat*{\subsubsection}{\small}
